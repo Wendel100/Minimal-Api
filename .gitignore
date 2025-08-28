@@ -1,7 +1,3 @@
-# Pastas de compilação
-bin/
-obj/
-
 # Configurações locais de IDE
 .vs/
 .vscode/
@@ -17,19 +13,10 @@ obj/
 *.log
 *.tmp
 *.swp
-
-# Artefatos do NuGet
-*.nupkg
-*.snupkg
-*.nuspec
-packages/
-.nuget/
-
 # Arquivos de build
 project.lock.json
 project.fragment.lock.json
 artifacts/
-
 # Configurações sensíveis
 appsettings.Development.json
 secrets.json
