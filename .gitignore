@@ -1,11 +1,4 @@
-# Configurações locais de IDE
-.vs/
-.vscode/
-.idea/
-
 # Arquivos de usuário do Visual Studio
-*.user
-*.suo
 *.userosscache
 *.sln.docstates
 
@@ -13,15 +6,6 @@
 *.log
 *.tmp
 *.swp
-# Arquivos de build
-project.lock.json
-project.fragment.lock.json
-artifacts/
 # Configurações sensíveis
 appsettings.Development.json
 secrets.json
-
-# Outros
-*.db
-*.db-shm
-*.db-wal
