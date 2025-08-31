@@ -5,13 +5,25 @@ namespace Minimal_Api.Infraestrutura.Db
 {
     public class DbContexto : DbContext
     {
+        private readonly IConfiguration _appConfiguracao;
+        public DbContexto(IConfiguration appConfiguracao)
+        {
+            _appConfiguracao = appConfiguracao;
+        }
         public DbSet<Administrador> administradores { get; set; } = default;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           optionsBuilder.UseMySql(
-                "conexao",
-            ServerVersion.AutoDetect("conexao")
-           );
+            if (!optionsBuilder.IsConfigured)
+            {
+                var stringConexao = _appConfiguracao.GetConnectionString("conexao")?.ToString();
+                if (!string.IsNullOrEmpty(stringConexao))
+                {
+                    optionsBuilder.UseMySql(
+                     stringConexao,
+                     ServerVersion.AutoDetect(stringConexao)
+                    );
+                }
+            }
         }
     }
 }
