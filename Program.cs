@@ -1,26 +1,26 @@
-using Microsoft.OpenApi.Models;
-
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-
 app.MapGet("/", () =>
 {
-    return Results.Ok("Seja bem vindo");
+    return Results.Ok("Faz acontecer");
 });
-app.MapGet("/login{login},{senha}", (string login, string senha) =>
+app.MapPost("/login", (LoginDTO loginDTO) =>
 {
-    if (login == "@gmal.com" & senha == "24")
+    if (loginDTO.Nome == "pd" && loginDTO.Senha == "24")
     {
-        return Results.Ok("Login feito com sucesso...");
+        return Results.Ok("Login feito com sucesso");
     }
     else
     {
@@ -28,17 +28,5 @@ app.MapGet("/login{login},{senha}", (string login, string senha) =>
     }
 });
 
-
+app.UseHttpsRedirection();
 app.Run();
-
-class LoginDTO
-{
-    public LoginDTO(string login, string senha)
-    {
-        Login = login;
-        Senha = senha;
-    }
-
-    public string Login { get; set; }
-    public string Senha { get; set; }
-}
