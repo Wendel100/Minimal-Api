@@ -1,0 +1,7 @@
+[*.cs]
+
+# IDE0005: O uso da diretiva é desnecessário.
+dotnet_diagnostic.IDE0005.severity = none
+
+# IDE0058: O valor da expressão nunca é usado
+csharp_style_unused_value_expression_statement_preference = unused_local_variable

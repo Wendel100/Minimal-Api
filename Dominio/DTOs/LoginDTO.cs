@@ -1,11 +1,8 @@
-class LoginDTO
+namespace Minimal_Api.Dominio.DTOs
 {
-    public LoginDTO(string nome, string senha)
+    public class LoginDTO(string nome, string senha)
     {
-        Nome = nome;
-        Senha = senha;
+        public string Email { get; set; } = nome;
+        public string Senha { get; set; } = senha;
     }
-
-    public string Nome { get; set; }
-    public string Senha { get; set; }
 }
